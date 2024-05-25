@@ -1,5 +1,12 @@
 package concurrentsystemsca2;
 
+import creatures.Ghost;
+import creatures.Vampire;
+import creatures.Werewolf;
+import java.util.ArrayList;
+import java.util.List;
+import player.Player;
+
 /**
  *
  * @author Charles Rocha
@@ -25,7 +32,33 @@ public class ConcurrentSystemsCA2 {
 
 
     public static void main(String[] args) {
+        
+                // Create players
+        Player player1 = new Player("Player 1", 0); // Top edge
+        Player player2 = new Player("Player 2", 1); // Right edge
+        Player player3 = new Player("Player 3", 2); // Bottom edge
+        Player player4 = new Player("Player 4", 3); // Left edge
 
+        // Add players to the game
+        List<Player> players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+
+        // Initialize the game
+        Match game = new Match(players);
+
+        // Add initial monsters for demonstration purposes
+        game.getBoard().placeMonster(new Vampire(player1, 0, 0), 0, 0);
+        game.getBoard().placeMonster(new Werewolf(player2, 9, 9), 9, 9);
+        game.getBoard().placeMonster(new Ghost(player3, 0, 9), 0, 9);
+        game.getBoard().placeMonster(new Vampire(player4, 9, 0), 9, 0);
+
+        // Start the game rounds
+        while (players.size() > 1) {
+            game.startRound();
+        }
     }
     
 }
