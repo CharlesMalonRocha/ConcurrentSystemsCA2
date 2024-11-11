@@ -5,6 +5,7 @@ import creatures.Vampire;
 import creatures.Werewolf;
 import java.util.ArrayList;
 import java.util.List;
+import match.Match;
 import player.Player;
 
 /**
